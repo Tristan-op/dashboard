@@ -8,8 +8,9 @@ import torch
 
 # Chemin vers le modèle et chargement des composants du modèle
 model_path = './model'  # Assurez-vous que ce chemin est correct
-model = AutoModelForSequenceClassification.from_pretrained(model_path)
-tokenizer = AutoTokenizer.from_pretrained("microsoft/deberta-v3-base")  # Remplacez par le modèle DeBERTa spécifique
+tokenizer = AutoTokenizer.from_pretrained('./model')
+model = AutoModelForSequenceClassification.from_pretrained('./model')
+
 
 # Charger les données avec les colonnes spécifiées
 data_path = 'data/data_p9.csv'
