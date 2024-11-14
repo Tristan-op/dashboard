@@ -43,5 +43,5 @@ watchdog==6.0.0
 
 # Dépendances spécifiques à votre projet
 matplotlib==3.7.1
-wordcloud==1.8.1
+wordcloud==1.8.2.2
 transformers==4.34.0
