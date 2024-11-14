@@ -1,8 +1,8 @@
 wordcloud==1.9.4
 streamlit==1.40.1
 pandas==2.2.3
-matplotlib==3.7.1
-transformers==4.34.0
+matplotlib==3.9.2
+transformers==4.46.2
 altair==5.4.1
 attrs==24.2.0
 blinker==1.9.0
