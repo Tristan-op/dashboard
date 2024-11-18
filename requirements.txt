@@ -1,5 +1,4 @@
-setuptools-rust>=1.5
-tiktoken==0.4.0
+tiktoken @ https://files.pythonhosted.org/packages/59/2e/c12f0f96ec13b6b47041b80acac12f2da52a0c9b5630a4c27e69a7ad2199/tiktoken-0.4.0-py3-none-any.whl
 wordcloud==1.9.4
 streamlit==1.40.1
 pandas==2.2.3
