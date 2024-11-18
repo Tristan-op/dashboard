@@ -6,12 +6,10 @@ import re
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 import torch
 
-# Chemin vers le modèle
-model_path = './model'  # Vérifiez que le dossier modèle existe bien
-
-# Charger le tokenizer et le modèle
-tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)  # Éviter le mode rapide lié à tiktoken
-model = AutoModelForSequenceClassification.from_pretrained(model_path)
+# Chemin vers le modèle et chargement des composants du modèle
+model_path = './model'  # Assurez-vous que ce chemin est correct
+tokenizer = AutoTokenizer.from_pretrained('./model')
+model = AutoModelForSequenceClassification.from_pretrained('./model')
 
 
 # Charger les données avec les colonnes spécifiées
