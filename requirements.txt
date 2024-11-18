@@ -43,4 +43,3 @@ tzdata==2024.2
 urllib3==2.2.3
 watchdog==6.0.0
 torch==2.5.1
-tiktoken==0.4.0
