@@ -61,39 +61,37 @@ elif option == "Analyse des données":
         ax.set_ylabel("Nombre de Tweets")
         st.pyplot(fig)
 
-    # WordClouds séparés pour les tweets positifs et négatifs
-    if st.button("Afficher les WordClouds par sentiment"):
-        st.subheader("Nuages de Mots - Positifs et Négatifs")
-
-        # Nettoyage des tweets pour éviter les bruits
-        def clean_text(text):
-            text = re.sub(r"http\S+|www\S+|https\S+", '', text, flags=re.MULTILINE)
-            text = re.sub(r'\@\w+|\#', '', text)  # Retire mentions et hashtags
-            text = re.sub(r'[^A-Za-z0-9\s]', '', text)  # Retire caractères spéciaux
-            return text
-
-        data['clean_text'] = data['text'].apply(clean_text)
+    # Nuage de mots pour les tweets positifs et négatifs
+    if st.button("Afficher les WordClouds (Positifs et Négatifs)"):
+        st.subheader("Nuage de Mots : Tweets Positifs et Négatifs (limité à 50 000 chacun)")
 
         # Limiter les tweets positifs et négatifs à 50 000 maximum
         positive_tweets = data[data['target'] == 4]['text'].head(50000)
         negative_tweets = data[data['target'] == 0]['text'].head(50000)
 
-        # Générer les WordClouds pour chaque sentiment
-        wordcloud_pos = WordCloud(width=800, height=400, background_color='white').generate(positive_tweets)
-        wordcloud_neg = WordCloud(width=800, height=400, background_color='white').generate(negative_tweets)
+        # Combiner les tweets en une seule chaîne de texte
+        positive_text = " ".join(positive_tweets.astype(str))
+        negative_text = " ".join(negative_tweets.astype(str))
 
-        # Afficher les deux WordClouds
-        st.write("Nuage de Mots pour les Tweets Positifs")
-        fig_pos, ax_pos = plt.subplots(figsize=(10, 5))
-        ax_pos.imshow(wordcloud_pos, interpolation="bilinear")
-        ax_pos.axis("off")
-        st.pyplot(fig_pos)
+        # Générer le WordCloud pour les tweets positifs
+        positive_wordcloud = WordCloud(width=800, height=400, background_color='white').generate(positive_text)
 
-        st.write("Nuage de Mots pour les Tweets Négatifs")
-        fig_neg, ax_neg = plt.subplots(figsize=(10, 5))
-        ax_neg.imshow(wordcloud_neg, interpolation="bilinear")
-        ax_neg.axis("off")
-        st.pyplot(fig_neg)
+        # Générer le WordCloud pour les tweets négatifs
+        negative_wordcloud = WordCloud(width=800, height=400, background_color='white').generate(negative_text)
+
+        # Afficher les WordClouds
+        st.write("**WordCloud pour les Tweets Positifs :**")
+        fig_positive, ax_positive = plt.subplots(figsize=(10, 5))
+        ax_positive.imshow(positive_wordcloud, interpolation="bilinear")
+        ax_positive.axis("off")
+        st.pyplot(fig_positive)
+
+        st.write("**WordCloud pour les Tweets Négatifs :**")
+        fig_negative, ax_negative = plt.subplots(figsize=(10, 5))
+        ax_negative.imshow(negative_wordcloud, interpolation="bilinear")
+        ax_negative.axis("off")
+        st.pyplot(fig_negative)
+
     # Analyse de la longueur des mots et des phrases par sentiment
     if st.button("Afficher l'analyse de la longueur des mots et des phrases"):
         st.subheader("Longueur des Mots et des Phrases par Sentiment")
