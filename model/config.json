@@ -29,8 +29,7 @@
   "relative_attention": true,
   "share_att_key": true,
   "torch_dtype": "float32",
-  "transformers_version": "4.46.1",
+  "transformers_version": "4.46.2",
   "type_vocab_size": 0,
-  "use_cache": false,
   "vocab_size": 128100
 }
