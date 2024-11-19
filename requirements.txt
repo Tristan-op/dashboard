@@ -1,4 +1,4 @@
-sentencepiece==0.1.99.post3
+sentencepiece==0.2.0
 streamlit==1.40.1
 pandas==2.2.3
 matplotlib==3.9.2
