@@ -74,9 +74,9 @@ elif option == "Analyse des données":
 
         data['clean_text'] = data['text'].apply(clean_text)
 
-        # Séparer les tweets positifs et négatifs
-        positive_tweets = " ".join(data[data['target'] == 4]['clean_text'])
-        negative_tweets = " ".join(data[data['target'] == 0]['clean_text'])
+        # Limiter les tweets positifs et négatifs à 50 000 maximum
+        positive_tweets = data[data['target'] == 4]['text'].head(50000)
+        negative_tweets = data[data['target'] == 0]['text'].head(50000)
 
         # Générer les WordClouds pour chaque sentiment
         wordcloud_pos = WordCloud(width=800, height=400, background_color='white').generate(positive_tweets)
@@ -94,7 +94,6 @@ elif option == "Analyse des données":
         ax_neg.imshow(wordcloud_neg, interpolation="bilinear")
         ax_neg.axis("off")
         st.pyplot(fig_neg)
-
     # Analyse de la longueur des mots et des phrases par sentiment
     if st.button("Afficher l'analyse de la longueur des mots et des phrases"):
         st.subheader("Longueur des Mots et des Phrases par Sentiment")
