@@ -1,3 +1,4 @@
+sentencepiece==0.1.99
 wordcloud==1.9.4
 streamlit==1.40.1
 pandas==2.2.3
