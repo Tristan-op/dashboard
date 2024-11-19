@@ -1,4 +1,4 @@
-sentencepiece @ https://github.com/google/sentencepiece/releases/download/v0.1.99/sentencepiece-0.1.99-cp312-cp312-manylinux2014_x86_64.whl
+sentencepiece==0.1.99.post3
 streamlit==1.40.1
 pandas==2.2.3
 matplotlib==3.9.2
