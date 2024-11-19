@@ -8,8 +8,11 @@ import torch
 
 # Chemin vers le modèle et chargement des composants du modèle
 model_path = './model'  # Assurez-vous que ce chemin est correct
-tokenizer = AutoTokenizer.from_pretrained('./model')
-model = AutoModelForSequenceClassification.from_pretrained('./model')
+# Charger le tokenizer
+tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)  # Désactiver use_fast pour éviter les erreurs tiktoken
+
+# Charger le modèle
+model = AutoModelForSequenceClassification.from_pretrained(model_path)
 
 
 # Charger les données avec les colonnes spécifiées
