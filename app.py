@@ -5,15 +5,21 @@ from wordcloud import WordCloud
 import re
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 import torch
+import subprocess
+
+# Installation forcée de sentencepiece si nécessaire (pour compatibilité Streamlit Cloud)
+try:
+    import sentencepiece
+except ImportError:
+    subprocess.check_call(["pip", "install", "sentencepiece==0.1.99"])
 
 # Chemin vers le modèle et chargement des composants du modèle
-model_path = './model'  # Assurez-vous que ce chemin est correct
+model_path = './model'
 # Charger le tokenizer
-tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)  # Désactiver use_fast pour éviter les erreurs tiktoken
+tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
 
 # Charger le modèle
 model = AutoModelForSequenceClassification.from_pretrained(model_path)
-
 
 # Charger les données avec les colonnes spécifiées
 data_path = 'data/data_p9.csv'
