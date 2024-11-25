@@ -118,18 +118,20 @@ elif option == "Analyse des données":
 
     # Hashtags les plus fréquents
     if st.button("Afficher les hashtags les plus fréquents"):
-        st.subheader("Hashtags les plus fréquents")
+        st.subheader("Analyse des Hashtags les plus Fréquents par Sentiment")
        
-        data['hashtags'] = data['text'].apply(lambda x: [word for word in x.split() if word.startswith("#")])
-        all_hashtags = sum(data['hashtags'], [])
-        hashtags_freq = pd.Series(all_hashtags).value_counts().head(10)
-       
-        fig, ax = plt.subplots()
-        hashtags_freq.plot(kind='bar', color='green', ax=ax)
-        ax.set_title("Top 10 Hashtags les Plus Fréquents")
-        ax.set_xlabel("Hashtag")
-        ax.set_ylabel("Fréquence")
-        st.pyplot(fig)
+        positive_hashtags = data[data['target'] == 4]['text'].str.findall(r"#\w+").explode()
+	negative_hashtags = data[data['target'] == 0]['text'].str.findall(r"#\w+").explode()
+
+	positive_hashtag_counts = positive_hashtags.value_counts().head(20)
+	negative_hashtag_counts = negative_hashtags.value_counts().head(20)
+
+	st.write("**Top 20 hashtags dans les tweets positifs :**")
+	st.bar_chart(positive_hashtag_counts)
+
+	st.write("**Top 20 hashtags dans les tweets négatifs :**")
+	st.bar_chart(negative_hashtag_counts)
+
 
     # Distribution des Heures de Publication
     if st.button("Afficher la distribution des heures de publication"):
