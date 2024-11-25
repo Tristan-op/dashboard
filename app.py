@@ -119,19 +119,22 @@ elif option == "Analyse des données":
     # Hashtags les plus fréquents
     if st.button("Afficher les hashtags les plus fréquents"):
         st.subheader("Analyse des Hashtags les plus Fréquents par Sentiment")
-       
+
+        # Extraire les hashtags pour les tweets positifs et négatifs
         positive_hashtags = data[data['target'] == 4]['text'].str.findall(r"#\w+").explode()
-	negative_hashtags = data[data['target'] == 0]['text'].str.findall(r"#\w+").explode()
+        negative_hashtags = data[data['target'] == 0]['text'].str.findall(r"#\w+").explode()
 
-	positive_hashtag_counts = positive_hashtags.value_counts().head(20)
-	negative_hashtag_counts = negative_hashtags.value_counts().head(20)
+        # Calculer les hashtags les plus fréquents
+        positive_hashtag_counts = positive_hashtags.value_counts().head(20)
+        negative_hashtag_counts = negative_hashtags.value_counts().head(20)
 
-	st.write("**Top 20 hashtags dans les tweets positifs :**")
-	st.bar_chart(positive_hashtag_counts)
+        # Afficher les résultats pour les tweets positifs
+        st.write("**Top 20 hashtags dans les tweets positifs :**")
+        st.bar_chart(positive_hashtag_counts)
 
-	st.write("**Top 20 hashtags dans les tweets négatifs :**")
-	st.bar_chart(negative_hashtag_counts)
-
+        # Afficher les résultats pour les tweets négatifs
+        st.write("**Top 20 hashtags dans les tweets négatifs :**")
+        st.bar_chart(negative_hashtag_counts)
 
     # Distribution des Heures de Publication
     if st.button("Afficher la distribution des heures de publication"):
